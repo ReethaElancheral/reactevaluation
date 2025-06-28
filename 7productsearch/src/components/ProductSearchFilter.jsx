@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PRODUCTS } from "../data/products";
 import ProductList from "./ProductList";
 
-export default function ProductSearchFilter() {
+export default function ProductSearchFilter({ onAddToCart }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("All");
 
@@ -37,7 +37,8 @@ export default function ProductSearchFilter() {
         </select>
       </div>
 
-      <ProductList products={filteredProducts} />
+      {/* ✅ Pass onAddToCart to ProductList */}
+      <ProductList products={filteredProducts} onAddToCart={onAddToCart} />
     </div>
   );
 }

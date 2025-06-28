@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ProductList({ products }) {
+export default function ProductList({ products, onAddToCart }) {
   if (products.length === 0) return <p>No products found.</p>;
 
   return (
@@ -10,7 +10,10 @@ export default function ProductList({ products }) {
           <img src={product.image} alt={product.name} />
           <h3>{product.name}</h3>
           <p>₹{product.price}</p>
-          <p className="category-tag">{product.category}</p>
+        
+          <button className="add-to-cart-btn" onClick={() => onAddToCart(product)}>
+            Add to Cart
+          </button>
         </div>
       ))}
     </div>

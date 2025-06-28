@@ -120,3 +120,18 @@
   box-shadow: 0 0 6px #4caf50aa;
   outline: none;
 }
+.add-to-cart-btn {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #388e3c;
+}
