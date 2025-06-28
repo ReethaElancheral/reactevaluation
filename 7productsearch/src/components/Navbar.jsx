@@ -11,11 +11,9 @@ export default function Navbar() {
       backgroundColor: "#4caf50",
       color: "white",
     }}>
-      <div style={{ marginRight: "2rem", fontWeight: "bold", fontSize: "1.25rem" }}>
-        🛍️ EasyBuy
-      </div>
+      
       <NavLink
-        to="/products"
+        to="/"
         style={({ isActive }) => ({
           color: isActive ? "#ffeb3b" : "white",
           textDecoration: "none",

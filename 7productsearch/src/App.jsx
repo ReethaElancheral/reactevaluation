@@ -14,8 +14,8 @@ export default function App() {
       <Navbar />
       <main>
         <Routes>
-          <Route path="/" element={<h1>Welcome to EasyBuy!</h1>} />
-          <Route path="/products" element={<ProductSearchFilter />} />
+      
+          <Route path="/" element={<ProductSearchFilter />} />
           <Route path="*" element={<h1>Page Not Found</h1>} />
         </Routes>
       </main>
