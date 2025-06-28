@@ -7,10 +7,8 @@ const Navbar = ({ cartCount }) => {
     <nav className="navbar">
       <div className="navbar-brand">🛍️ VetriMart</div>
       <div className="navbar-links">
-        <a href="/" className="nav-link">
-          Home
-        </a>
-        <a href="/cart" className="cart-link">
+       
+        <a href="/" className="cart-link">
           <FaShoppingCart />
           Cart
           {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
