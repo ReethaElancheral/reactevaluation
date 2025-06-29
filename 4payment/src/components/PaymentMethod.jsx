@@ -20,16 +20,21 @@ export default function PaymentMethod() {
 
   const getLabel = (id) => PAYMENT_METHODS.find((m) => m.id === id)?.label || "";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!selected) {
-      setError("Please select a payment method.");
-      return;
-    }
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    localStorage.setItem("paymentMethod", selected);
-    navigate("/summary");
-  };
+  if (!selected) {
+    setError("Please select a payment method.");
+    return;
+  }
+
+  localStorage.setItem("paymentMethod", selected);
+  localStorage.setItem("isPaymentSubmitted", "true"); 
+
+  navigate("/summary");
+  window.dispatchEvent(new Event("storage"));
+};
+
 
   return (
     <section className="payment-method-container">

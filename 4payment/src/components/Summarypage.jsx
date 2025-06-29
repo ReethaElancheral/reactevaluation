@@ -66,26 +66,20 @@ const SummaryPage = () => {
     pincode: "641035",
   };
 
- const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
+const [paymentMethod, setPaymentMethod] = useState("");
 
 useEffect(() => {
   const storedMethod = localStorage.getItem("paymentMethod");
   if (storedMethod) {
     setPaymentMethod(storedMethod);
+    
+  
+    localStorage.removeItem("isPaymentSubmitted");
   }
 }, []);
 
-  
-  const handleSearch = (term) => {
-    if (!term) {
-      setProducts(initialProducts);
-    } else {
-      const filtered = initialProducts.filter((p) =>
-        p.name.toLowerCase().includes(term.toLowerCase())
-      );
-      setProducts(filtered);
-    }
-  };
+
+
 
   const grandTotal = products.reduce(
     (sum, item) => sum + item.price * item.quantity,

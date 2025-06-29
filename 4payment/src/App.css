@@ -39,29 +39,32 @@ h3 {
 }
 
 .navbar {
+  position: relative; 
+  display: flex;
+  align-items: center;
+  padding: 16px 40px;
   background: var(--text-dark);
   color: white;
-  padding: 16px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 6px 15px var(--shadow-light);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 1.2px;
+  height: 60px;
 }
 
 .navbar-brand {
-  font-size: 26px;
-  letter-spacing: 2px;
+ 
+  z-index: 2; 
 }
 
 .navbar-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: 700;
   display: flex;
-  gap: 30px;
+  justify-content: center;
+  width: max-content;
 }
 
 .navbar-links a {
@@ -70,7 +73,6 @@ h3 {
   padding: 10px 16px;
   border-radius: 8px;
   transition: background 0.25s ease;
-  font-size: 18px;
 }
 
 .navbar-links a:hover,
@@ -80,27 +82,6 @@ h3 {
   font-weight: 700;
 }
 
-.cart-icon {
-  position: relative;
-  font-size: 26px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.cart-badge {
-  position: absolute;
-  top: -12px;
-  right: -14px;
-  background: var(--primary-color);
-  color: white;
-  border-radius: 50%;
-  padding: 4px 10px;
-  font-weight: 700;
-  font-size: 14px;
-  box-shadow: 0 0 8px var(--primary-color);
-  min-width: 24px;
-  text-align: center;
-}
 
 .payment-form .radio-group {
   display: flex;
@@ -581,47 +562,257 @@ input[type="radio"]:checked + .custom-radio::after {
 
 
 @media (max-width: 768px) {
+ 
+  .summary-wrapper {
+    flex-direction: column;
+    padding: 20px 10px 40px;
+    max-width: 100%;
+  }
+
+
+  .summary-left {
+    flex: none;
+    width: 100%;
+    min-width: auto;
+  }
+
+
+  .summary-right {
+    flex: none;
+    width: 100%;
+    min-width: auto;
+    position: static; 
+    margin-top: 20px;
+    gap: 15px;
+  }
+
+
+  .summary-page {
+    max-width: 100%;
+    padding: 20px 15px;
+  }
+
+  
+  .product-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .product-item img {
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    border-radius: 10px;
+  }
+
+  
+  .product-info {
+    font-size: 14px;
+  }
+   .product-list ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+ 
+  .product-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+  }
+
+
+  .product-item img {
+    width: 100%;
+    max-height: 180px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+ 
+  .product-info {
+    flex-grow: 0;
+    width: 100%;
+    font-size: 14px;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+ 
+  .product-buttons {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
   .navbar {
+    justify-content: center;  
+    padding: 12px 20px;
+    font-size: 18px;
+    height: auto;
+    flex-wrap: wrap; 
+    position: relative;
+  }
+
+  .navbar-brand {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+  }
+
+  .navbar-links {
+    position: static;
+    transform: none;
+    width: 100%;
     justify-content: center;
+    margin-top: 8px;
+    font-size: 16px;
+  }
+
+  .navbar-links a {
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+
+  .app-wrapper {
+    margin: 30px 15px;
+    padding: 20px;
+  }
+
+  .payment-method-container {
+    max-width: 100%;
+    margin: 30px 10px;
+    padding: 20px 15px;
+  }
+
+  .payment-form {
+    width: 100%;
+  }
+
+  .radio-label {
+    font-size: 16px;
+    padding: 10px 15px;
+    gap: 12px;
+  }
+
+  .custom-radio {
+    width: 16px;
+    height: 16px;
+  }
+
+  .custom-radio::after {
+    width: 8px;
+    height: 8px;
+  }
+
+  .summary-page {
+    padding: 20px 15px;
+    max-width: 100%;
+  }
+
+  .product-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .product-item img {
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    border-radius: 10px;
+  }
+
+  .product-info {
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    font-size: 18px;
+    padding: 12px 0;
   }
 
   .summary-wrapper {
     flex-direction: column;
-    padding: 20px;
+    padding: 20px 10px 40px;
+  }
+
+  .summary-left,
+  .summary-right {
+    min-width: 100%;
+    position: static;
   }
 
   .summary-right {
-    position: static;
-    width: 100%;
-    gap: 15px;
-  }
-
-  .summary-box {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   .sidebar {
     flex-direction: row;
     justify-content: center;
+    gap: 10px;
   }
 
   .sidebar-btn {
     flex: 1;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
   }
 
-  .product-card {
-    flex-direction: column;
-    align-items: flex-start;
+  .navbar {
+    font-size: 16px;
+    padding: 10px 12px;
   }
 
-  .product-image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 12px;
+  .navbar-brand {
+    font-size: 20px;
+    left: 12px;
   }
 
-  .product-buttons {
-    flex-direction: column;
-    gap: 8px;
+  .navbar-links a {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .payment-method-container {
+    padding: 15px 10px;
+  }
+
+  .radio-label {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .btn-primary {
+    font-size: 16px;
+    padding: 10px 0;
+  }
+
+  .product-item img {
+    max-height: 140px;
   }
 }
