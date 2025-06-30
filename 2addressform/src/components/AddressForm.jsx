@@ -62,14 +62,22 @@ export default function AddressForm() {
 
   const currentUser = localStorage.getItem("currentUser");
 
-  useEffect(() => {
-    if (currentUser) {
-      const savedAddress = localStorage.getItem(`address_${currentUser}`);
-      if (savedAddress) {
-        setForm(JSON.parse(savedAddress));
-      }
+useEffect(() => {
+  // If no user is set in localStorage, set a dummy user
+  if (!localStorage.getItem("currentUser")) {
+    localStorage.setItem("currentUser", "guest_user");
+  }
+
+  const user = localStorage.getItem("currentUser");
+
+  if (user) {
+    const savedAddress = localStorage.getItem(`address_${user}`);
+    if (savedAddress) {
+      setForm(JSON.parse(savedAddress));
     }
-  }, [currentUser]);
+  }
+}, []);
+
 
  const validate = () => {
   let errs = {};
@@ -132,8 +140,8 @@ const handleSubmit = (e) => {
   if (!validate()) return;
 
   if (currentUser) {
-    localStorage.setItem(`address_${currentUser}`, JSON.stringify(form));
-    setSuccessMsg("Shipping address saved successfully!");
+     localStorage.setItem(`address_${currentUser}`, JSON.stringify(form));
+  setSuccessMsg("Shipping address saved successfully!");
 
   
     setForm({
