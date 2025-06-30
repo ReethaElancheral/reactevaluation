@@ -71,28 +71,52 @@ export default function AddressForm() {
     }
   }, [currentUser]);
 
-  const validate = () => {
-    let errs = {};
+ const validate = () => {
+  let errs = {};
 
-    if (!form.fullName.trim()) errs.fullName = "Full Name is required";
+ 
+  if (!form.fullName.trim()) {
+    errs.fullName = "Full Name is required";
+  } else if (!/^[a-zA-Z\s]+$/.test(form.fullName)) {
+    errs.fullName = "Full Name should contain only letters and spaces";
+  }
 
-    if (!form.phone.trim()) errs.phone = "Phone Number is required";
-    else if (!/^\d{10}$/.test(form.phone))
-      errs.phone = "Phone Number must be exactly 10 digits";
 
-    if (!form.street.trim()) errs.street = "Street Address is required";
+  if (!form.phone.trim()) {
+    errs.phone = "Phone Number is required";
+  } else if (!/^\d{10}$/.test(form.phone)) {
+    errs.phone = "Phone Number must be exactly 10 digits";
+  }
 
-    if (!form.city.trim()) errs.city = "City is required";
+ 
+  if (!form.street.trim()) {
+    errs.street = "Street Address is required";
+  } else if (!/(?=.*[a-zA-Z])(?=.*\d)/.test(form.street)) {
+    errs.street = "Street must contain both letters and numbers";
+  }
 
-    if (!form.state.trim()) errs.state = "State is required";
+  
+  if (!form.city.trim()) {
+    errs.city = "City is required";
+  } else if (!/^[a-zA-Z\s]+$/.test(form.city)) {
+    errs.city = "City should contain only letters and spaces";
+  }
 
-    if (!form.pincode.trim()) errs.pincode = "Pincode is required";
-    else if (!/^\d{6}$/.test(form.pincode))
-      errs.pincode = "Pincode must be exactly 6 digits";
 
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
-  };
+  if (!form.state.trim()) {
+    errs.state = "State is required";
+  }
+
+
+  if (!form.pincode.trim()) {
+    errs.pincode = "Pincode is required";
+  } else if (!/^\d{6}$/.test(form.pincode)) {
+    errs.pincode = "Pincode must be exactly 6 digits";
+  }
+
+  setErrors(errs);
+  return Object.keys(errs).length === 0;
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -102,18 +126,32 @@ export default function AddressForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (!validate()) return;
+  if (!validate()) return;
 
-    if (currentUser) {
-      localStorage.setItem(`address_${currentUser}`, JSON.stringify(form));
-      setSuccessMsg("Shipping address saved successfully!");
-    } else {
-      setSuccessMsg("No user logged in. Cannot save address.");
-    }
-  };
+  if (currentUser) {
+    localStorage.setItem(`address_${currentUser}`, JSON.stringify(form));
+    setSuccessMsg("Shipping address saved successfully!");
+
+  
+    setForm({
+      fullName: "",
+      countryCode: "+91",
+      phone: "",
+      street: "",
+      city: "",
+      state: "",
+      pincode: "",
+    });
+
+    setErrors({});
+  } else {
+    setSuccessMsg("No user logged in. Cannot save address.");
+  }
+};
+
 
   const handleReset = () => {
     setForm({
